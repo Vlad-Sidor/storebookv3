@@ -455,7 +455,7 @@ const Home: NextPage = () => {
           data.append(key, value.toString());
         });
 
-        const response = await fetch('https://script.google.com/macros/s/AKfycbygfxR4G_WnLFFb5o6qnuO7JutBHa2i0RfgyxN-JecvNLAAhl5McFZnpq0jyPx9ULYI/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwZsKswevZRfKZF79MCwJkx42nfxoFF1fqvrq7L2Q8Z6qmyB1lrn99v5dVqD3lBC_fl/exec', {
           method: 'POST',
           mode: 'no-cors',
           headers: {
