@@ -170,6 +170,7 @@ const ContainerEmail = styled.div`
       width: 100%;
       margin: 0;
       padding: 10px;
+      padding-top: 30vw;
   }
 `;
 const Header = styled.h1`
@@ -339,6 +340,8 @@ const ButtonEmail = styled.button`
   }
 `;
 
+//sheet 2
+
 type ItemKey = 'item1' | 'item2' | 'item3' | 'item4' | 'item5' | 'item6' | 'item7';
 
 const itemLabels: Record<ItemKey, string> = {
@@ -350,6 +353,8 @@ const itemLabels: Record<ItemKey, string> = {
   item6: 'Концепт: Собственное содержание',
   item7: 'Концепт: Родовая схема'
 };
+
+ //end sheet2
 
 const Home: NextPage = () => {
   const { isHidden, bookIframe, previewIframe } = useAppSelector(
@@ -363,6 +368,8 @@ const Home: NextPage = () => {
   const [activeTabReports, setActiveTabReports] = useState<string>('Апокрифы');
   const [activeTabMMACC, setActiveTabMMACC] = useState<string>('Доклады и сообщения');
   
+
+  //sheet1
 
   const formRef1 = useRef<HTMLFormElement | null>(null);
 
@@ -399,7 +406,10 @@ const Home: NextPage = () => {
     }
   };
 
+  //end sheet1
 
+
+   //sheet2
 
   const formRef2 = useRef<HTMLFormElement | null>(null);
 
@@ -486,6 +496,7 @@ const Home: NextPage = () => {
     }
   };
 
+   //end sheet2
 
   return (
     <>
