@@ -16,6 +16,8 @@ import { useAppSelector } from "../store/hooks";
 import BookIframe from "../components/iframe/BookIframe";
 import PreviewIframe from "../components/iframe/PreviewIframe";
 import styled from 'styled-components';
+import closeModalicon from "../static/svg/closeModal.svg"
+import like from "../static/svg/like.svg"
 
 //import styles from "../styles/Home.module.css";
 //import AboutNFT from "../components/boxes/aboutNFT";
@@ -300,7 +302,7 @@ const InputEmail = styled.input`
   font-size: 18px;
   box-sizing: border-box;
   margin-bottom: 0px;
-  
+
   &::placeholder {
     color: #888;
   }
@@ -311,14 +313,23 @@ const InputEmail = styled.input`
 
   &:focus {
     background-color: transparent;
-    outline: none;  // Убирает стандартное обводку браузера при фокусе
+    outline: none; /* Убирает стандартную обводку браузера при фокусе */
   }
 
   @media (max-width: 700px) {
     font-size: 14px;
     padding: 12px 16px;
   }
+
+  &:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: transparent !important; /* Прозрачный фон */
+    color: fieldtext !important;
+  }
 `;
+
+
 
 
 const ButtonEmail = styled.button`
@@ -341,6 +352,8 @@ const ButtonEmail = styled.button`
 `;
 
 //sheet 2
+
+
 
 type ItemKey = 'item1' | 'item2' | 'item3' | 'item4' | 'item5' | 'item6' | 'item7';
 
@@ -398,7 +411,7 @@ const Home: NextPage = () => {
   
         const result = await response.json();
         console.log(result);
-        alert('Data submitted successfully!');
+        setIsModalOpen(true);
       } catch (err) {
         console.error(err);
         alert("There was an error submitting the form");
@@ -412,6 +425,7 @@ const Home: NextPage = () => {
    //sheet2
 
   const formRef2 = useRef<HTMLFormElement | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [checkedItems, setCheckedItems] = useState<Record<ItemKey, boolean>>({
     item1: false,
@@ -474,7 +488,11 @@ const Home: NextPage = () => {
           body: data.toString()
         });
         
-        alert('Data submitted successfully!');
+        setIsModalOpen(true);
+
+        console.log(isModalOpen);
+
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -482,7 +500,9 @@ const Home: NextPage = () => {
         const result = await response.json();
         console.log('Server response:', result);
 
-        alert('Data submitted successfully!');
+        //alert('Data submitted successfully!');
+        console.log(isModalOpen);
+        setIsModalOpen(true);
 /*
         if (result.msg === 'Data submitted successfully!') {
           alert('Data submitted successfully!');
@@ -494,6 +514,10 @@ const Home: NextPage = () => {
         alert('Error submitting data');*/
       }
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
    //end sheet2
@@ -758,6 +782,17 @@ const Home: NextPage = () => {
                     </TabContainerForm>
                     <Button>Отправить заявку</Button>
                   </form>
+                  {isModalOpen && (
+                    <div className="modal-overlays" onClick={closeModal}>
+                      <div className="modals" onClick={(e) => e.stopPropagation()}>
+                        <div className="modals-contents">
+                          <button className="modals-closes" onClick={closeModal}><Image src={closeModalicon} alt="Close" /></button>
+                          <div className="modals-icons"><Image src={like} alt="Close" /></div>
+                          <div className="modals-messages">Спасибо, Ваша <br /> заявка принята</div>
+                        </div>
+                      </div>
+                  </div>
+                  )}
               </ContainerForm>
               </motion.div>
             )}
@@ -811,6 +846,17 @@ const Home: NextPage = () => {
                   <ButtonEmail type="submit">Подписаться</ButtonEmail>
               </FormContainer>
             </form>
+              {isModalOpen && (
+              <div className="modal-overlays" onClick={closeModal}>
+                <div className="modals" onClick={(e) => e.stopPropagation()}>
+                  <div className="modals-contents">
+                    <button className="modals-closes" onClick={closeModal}><Image src={closeModalicon} alt="Close" /></button>
+                    <div className="modals-icons"><Image src={like} alt="Close" /></div>
+                    <div className="modals-messages">Спасибо, Ваша <br /> заявка принята</div>
+                  </div>
+                </div>
+            </div>
+            )}
         </ContainerEmail>
         </div>
       </section>
