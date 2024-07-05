@@ -270,5 +270,72 @@
                 p
                     padding: 0 20px
 
+@media screen and ( max-width: 400px )
+    .nft
+        height: 165vw
+    .closedSection 
+        height: 300vw
+    .products 
+        height: 275vw
+    
+
+@media screen and ( max-width: 370px )
+    .nft
+        height: 170vw   
+
+    .closedSection 
+        height: 300vw
+
+    .products 
+        height: 265vw
+    
 
 @import 'modal'
+
+
+.modal-overlays
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, 0.5)
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 1000
+
+.modals
+  background: white
+  padding: 0px
+  border-radius: 40px
+  text-align: center
+  position: relative
+  width: 401px
+  height: 301px
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+
+  &-contents
+    display: flex
+    flex-direction: column
+    align-items: center
+  &-icons
+    font-size: 48px
+    color: green
+    padding-top: 60px
+  &-messages
+    margin-top: 10px
+    font-size: 28px
+    font-weight: 600
+    padding-top: 0px
+    color: #000
+  &-closes
+    width: 19px
+    height: 19px
+    position: absolute
+    top: 30px
+    right: 35px
+    background: none
+    border: none
+    font-size: 24px
+    cursor: pointer
